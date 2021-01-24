@@ -20,7 +20,8 @@ class App extends Component {
       sec: "00",
     });
 
-    const subscription = Timer().subscribe((value) => {
+
+    Timer().subscribe((value) => {
       this.setState({
         hours: value.getUTCHours(),
         min: value.getMinutes(),
