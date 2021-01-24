@@ -1,17 +1,22 @@
 import { Observable } from "rxjs";
 
-const startTime = Date.now();
+const Timer = () => {
+  const startTime = Date.now();
+  let timer = {};
 
-const timer = new Observable((observer) => {
-  setInterval(() => {
-    const currentTime = Date.now();
-    const deltaTime = currentTime - startTime;
-    observer.next(new Date(deltaTime));
-  }, 1000);
+  timer = new Observable((subscriber) => {
+    setInterval(() => {
+      const currentTime = Date.now();
+      const deltaTime = currentTime - startTime;
+      subscriber.next(new Date(deltaTime));
+    }, 1000);
 
-  return function unsubscribe() {
-    clearInterval(timer);
-  };
-});
+    return function unsubscribe() {
+      clearInterval(timer);
+    };
+  });
 
-export default timer;
+  return timer;
+};
+
+export default Timer;
