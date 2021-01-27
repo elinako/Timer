@@ -20,7 +20,6 @@ class App extends Component {
       sec: "00",
     });
 
-
     Timer().subscribe((value) => {
       this.setState({
         hours: value.getUTCHours(),
@@ -30,7 +29,9 @@ class App extends Component {
     });
   };
 
-  resetTimer = () => {};
+  resetTimer = () => {
+    // Timer().unsubscribe(Timer());
+  };
 
   render() {
     const { hours, min, sec } = this.state;

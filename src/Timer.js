@@ -5,13 +5,15 @@ const Timer = () => {
   let timer = {};
 
   timer = new Observable((subscriber) => {
-    const interval = setInterval(() => {
+    setInterval(() => {
       const currentTime = Date.now();
       const deltaTime = currentTime - startTime;
       subscriber.next(new Date(deltaTime));
     }, 1000);
 
-    return clearInterval();
+    return function unsubscribe(interval) {
+      clearInterval(interval);
+    };
   });
 
   return timer;
